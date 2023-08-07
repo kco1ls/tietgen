@@ -1,0 +1,127 @@
+.app__navbar-container {
+  position: sticky;
+  top: 25px;
+  overflow: hidden;
+  /* background-color: red; */
+  z-index: 100;
+}
+
+.app__navbar {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  width: fit-content;
+  border-radius: 10px;
+  padding: 7px 10px;
+  /* backdrop-filter: blur(18px); */
+  /* background-color: rgba(255, 255, 255, 0.5); */
+  align-items: center;
+  margin: 0 auto;
+  align-self: center;
+  transition: transform 0.8s ease;
+  background-color: black;
+  /* border: 2px solid black; */
+  /* background-color: rgba(129, 129, 129, 0.60); */
+  /* filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.20)); */
+  /* backdrop-filter: blur(10px); */
+}
+
+.app__navbar.hide {
+  transform: translateY(-100%);
+}
+
+.app__navbar.show {
+  transform: translateY(0%);
+}
+
+.nav-btn {
+  margin-left: 25px;
+  cursor: pointer;
+  font-weight: 550;
+  color: black;
+  letter-spacing: -0.3px;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-btn:first-child {
+  margin-left: 10px;
+}
+
+.nav-btn:hover {
+  text-decoration: underline;
+}
+
+.nav-language {
+  margin: 0px 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: none;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  font-weight: 550;
+  font-size: 15.5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+}
+
+.contact_cta { 
+  background-color: white;
+  padding: 0px 10px;
+  border: 2px solid white;
+  color: black;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 5px;
+  text-decoration: none;
+  height: 28px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.apply_cta { 
+  background-color: #CD171F;
+  border: 2px solid #CD171F;
+  color: white;
+  padding: 0px 6px;
+  padding-bottom: 2px;
+  height: 28px;
+  padding-left: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 5px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.apply_cta img {
+  margin-top: 2px;
+}
+
+.apply_cta:hover {
+  background-color: #B3161F;
+}
+
+.contact_cta:hover {
+  background-color: rgb(255, 255, 255, 0.8);
+}
+
+.cta_buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+.navbar_logo {
+  height: 34px;
+} 

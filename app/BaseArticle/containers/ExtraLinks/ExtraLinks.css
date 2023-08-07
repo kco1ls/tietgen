@@ -1,0 +1,152 @@
+.app__extralinks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 25%;
+  max-width: 230px;
+}
+
+.app__extralinks-mobile {
+  display: none;
+}
+
+.app__extralinks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  padding-top: 25px;
+}
+
+.app__extralinks-container a {
+  text-decoration: none;
+  color: black;
+  font-weight: 550;
+  font-size: 17px;
+  width: 84%;
+  margin: 0px 20px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.app__extralinks-container a:hover {
+  text-decoration: underline;
+  color: #275DEA;
+} 
+
+.app__extralinks-container a.active {
+  background-color: black;
+  border-radius: 5px;
+  padding: 6px 10px;
+  color: white;
+}
+
+.well-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 75%;
+  margin: 0px 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  border: 1px solid #bdbdbd;
+  color: black;
+  font-size: 12.9px;
+  gap: 10px;
+}
+
+.well-container h3 {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.well-container th {
+  text-align: left;
+}
+
+.well-container a {
+  text-decoration: underline;
+  font-weight: 500;
+  /* color: black; */
+  /* font-weight: 550; */
+  /* font-size: 18px; */
+  /* width: 70%; */
+}
+
+.well-container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.well-container img {
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 1000px) {
+  .app__extralinks {
+    width: 30%;
+  }
+
+  .app__extralinks-container a {
+    font-size: 15px;
+
+    padding-left: 0;
+  }
+
+  .app__extralinks-container a.active {
+    padding: 6px 6px;
+    width: fit-content;
+    margin-left: 12px;
+  }
+
+  .app__extralinks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+    padding-top: 25px;
+  }
+
+  .app__extralinks {
+    width: 22%;
+  }
+
+}
+
+@media screen and (max-width: 900px) {
+  .app__extralinks-container a {
+    margin-left: 10px;
+  }
+
+  .app__extralinks-container a.active {
+    padding: 6px 6px;
+    width: fit-content;
+    margin-left: 6px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .app__extralinks {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .app__extralinks-container {
+    display: none;
+  }
+
+  .app__extralinks-mobile {
+    /* display: flex; */
+    flex-direction: column;
+    padding-top: 25px;
+    /**/
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+  }
+}

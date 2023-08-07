@@ -1,0 +1,137 @@
+
+  data.forEach((item, index) => {
+    
+    if (item.openTag == "a") {
+      item.openTag = Link;
+    } else if (item.openTag == "h2") {
+      item.openTag = "h1";
+
+      if (item.closeTag) {
+        item.text = capitalizeFirstLetter(item.text);
+      }
+    }
+
+    if (item.openTag && item.closeTag) {
+      let br_index = -1;
+      [br_index, item.text] = checkBr(item.text);
+
+      if (t_level === 0) {
+        if (item.extra) {
+          finalElements.push(React.createElement(item.openTag, { key: index, href: item.extra }, item.text));
+        }
+  
+        if (item.openTag !== "blockquote") {
+          colorNum++;
+          currentColor = colors[colorNum % colors.length];
+
+          finalElements.push(React.createElement(item.openTag, { className: currentColor, key: index }, item.text));
+        } else {
+          finalElements.push(React.createElement(item.openTag, { key: index }, item.text));
+        }
+
+        finalElements = ensureBr(finalElements, br_index);
+      } else {
+        if (item.extra) {
+          im_stack.push(React.createElement(item.openTag, { key: index, href: item.extra }, item.text));
+        } else {
+          im_stack.push(React.createElement(item.openTag, { key: index }, item.text));
+
+          im_stack = ensureBr(im_stack, br_index, index);
+        }
+      }
+    } else if (item.openTag) {
+      t_level++;
+      t_stack.push(item.openTag);
+    } else if (item.closeTag) {
+      t_level--;
+      let f_tag = t_stack.pop();
+
+      if (t_level === 0) {
+        finalElements.push(React.createElement(f_tag, { key: index }, ...im_stack));
+        im_stack = [];
+      } else {
+        im_stack.push(React.createElement(f_tag, { key: index }, f_element));
+      }
+    } else if (item.text) {
+      let br_index = -1;
+      [br_index, item.text] = checkBr(item.text);
+
+      im_stack.push(item.text);
+
+      im_stack = ensureBr(im_stack, br_index, index);
+    }
+
+    if (item.type === "table") {
+        let tableData = item.rows;
+        let newTable = null;
+
+        if (tableData.length === 1) {
+          tableData = tableData[0];
+
+          newTable = <div key={index} className={`table-holder ${currentColor}`}>
+            <div className="list-table">
+              <div className="list-table__marker" />
+              <div className="list-table__rows">
+                {tableData.map((item, index) => {
+                  item = capitalize(item);
+
+                  if (item.endsWith(";")) {
+                    item = item.slice(0, -1);
+                  }
+
+                  const options = {
+                    replace: ({ name, attribs, children }) => {
+                      if (!attribs) return;
+
+                      if (name === 'strong') {
+                        return <span className="colored">{domToReact(children, options)}</span>;
+                      }
+
+                      if (name === 'a') {
+                        return <Link key={index+231} href={attribs.href}>{children[0].data}</Link>;
+                      }
+                    },
+                  };
+
+                  // Convert the HTML string to JSX
+                  const jsx = parse(item, options);
+
+                  return (
+                    <div className="list-table__row" key={index+2913}>
+                      <li key={index+2383}>{jsx}</li>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        } else if (tableData.length > 1) {
+          let tableHeader = tableData[0];
+          tableData = tableData.slice(1);
+
+          newTable = (
+            <Table className="imported-table">
+              <TableHeader>
+                <TableRow>
+                  {tableHeader.map((item, index) => (
+                    <TableHead key={index}>{item}</TableHead>
+                  ))}
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {tableData.map((item, index) => (
+                  <TableRow key={index}>
+                    {tableData[index].map((item, index) => (
+                      <TableCell key={index}>{item}</TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          );
+        }
+
+          finalElements.push(newTable);
+      }
+
+    });
