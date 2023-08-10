@@ -53,7 +53,6 @@ const Content = ({currentURL, data }) => {
     }
   };
 
-  // Parse the HTML content with the replacement function
   const finalElements = parse(data, { replace: replaceTable });
 
   return <div className="app__content">{finalElements}</div>;
