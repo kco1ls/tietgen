@@ -50,7 +50,7 @@ const BasePage = ({locale, data}) => {
   } else {
       currentURL = path.join(process.cwd(), 'public/pages', currentURLorigin);
   }
-  const imageFiles = fs.readdirSync(currentURL).filter(file => file.endsWith('.jpg') && !isNaN(file.split('.')[0]));
+  const imageFiles = fs.readdirSync(currentURL).filter(file => file.endsWith('.webp') && !isNaN(file.split('.')[0]));
 
   const resizedWidths = [];
 
@@ -69,9 +69,6 @@ const BasePage = ({locale, data}) => {
   });
 
   let marquee = null;
-
-  // console.log(resizedWidths);
-  // console.log(resizedWidths.length);
 
   if (resizedWidths.length > 0) {
     marquee = <Marquee range={resizedWidths.length} folder={currentURL} imageSize={resizedWidths} />;

@@ -3,9 +3,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 130vh;
   width: 100%;
-  /* background-color: black; */
   background-color: white;
   position: fixed;
   z-index: 1000;
@@ -21,6 +20,7 @@
   justify-content: center;
   position: relative;
   border-radius: 20px;
+  margin-bottom: 30vh;
   flex-direction: column;
   /* border: 5px solid white; */
 }
@@ -94,6 +94,14 @@
     align-items: center;
     justify-content: center;
     font-size: 80px;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  .loader__gallery h1 {
+    font-size: 65px;
+    gap: 0px;
   }
 
 }

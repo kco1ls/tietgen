@@ -1,9 +1,24 @@
+'use client';
+import React, { useState } from 'react'; 
 import Link from 'next/link';
 import './ExtraLinks.css';
 
 const ExtraLinks = ({currentURL, well, links}) => {
+  let linkTitle = "Vigtige Links";
+  let openTitle = "ÅBEN";
+  let closeTitle = "LUK";
+  if (currentURL.includes('/en/')) {
+    linkTitle = "Important Links";
+    openTitle = "EXPAND";
+    closeTitle = "CLOSE";
+  }
 
-  // console.log(well);
+
+  const [openMenu, setOpenMenu] = useState(false); // Declare a state variable
+
+  const toggleMenu = () => {
+    setOpenMenu(!openMenu); // Toggle the state variable
+  };
 
   return (
     <div className="app__extralinks">
@@ -17,8 +32,8 @@ const ExtraLinks = ({currentURL, well, links}) => {
 
       </div>
 
-      <div className="app__extralinks-mobile">
-        <h2>Important Links</h2>
+      <div className={`app__extralinks-mobile ${openMenu ? 'open' : ''}`}>
+        <h2>{linkTitle}</h2>
 
         <div className="app__extralinks-mobile-container">
           {links.map((item, index) => (
@@ -26,9 +41,9 @@ const ExtraLinks = ({currentURL, well, links}) => {
               {item.label}
             </Link>
           ))}
-        </div>  
+        </div>
 
-        <button className="app__extralinks-mobile-btn">EXPAND</button>
+        <button onClick={toggleMenu} className="app__extralinks-mobile-btn">{openMenu ? closeTitle : openTitle}</button>
       </div>
 
       {well && well.map((html, index) => (

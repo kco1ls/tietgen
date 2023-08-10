@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import React from 'react';
 import { usePathname } from 'next/navigation'
 import './Footer.css';
@@ -24,7 +25,7 @@ const Footer = () => {
 
       <div className="app__footer-part app__footer-right">
         <p>{thanks}</p>
-        <img className="thanks-img" src="/nordeafonden.svg" />
+        <Image width={140} height={62} alt="Nordea Fonden" className="thanks-img" src="/nordeafonden.svg" />
       </div>
     </div>
   );

@@ -21,10 +21,8 @@ const Content = ({currentURL, data }) => {
     data = "<h1>Not found</h1>";
   }
   
-  // Define a custom replacement function for the table element
   const replaceTable = (node) => {
     if (node.name === 'table') {
-      // Extract table header and body data
       const tableHeader = node.children[0].children[0].children.map(
         (th) => th.children[0].data
       );
@@ -32,7 +30,6 @@ const Content = ({currentURL, data }) => {
         tr.children.map((td) => td.children[0].data)
       );
 
-      // Return the custom Table JSX component
       return (
         <Table className="imported-table">
           <TableHeader>

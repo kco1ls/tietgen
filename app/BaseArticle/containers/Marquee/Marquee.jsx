@@ -7,8 +7,6 @@ import Image from 'next/image';
 function calculateSize(aspectRatio) {
   let desiredHeight, desiredWidth;
 
-  // console.log("aspectRatio: " + aspectRatio);
-
   if (aspectRatio > 1) {
     desiredWidth = 0.8 * window.innerWidth; // 80vw
     desiredHeight = desiredWidth / aspectRatio;
@@ -31,29 +29,22 @@ function calculateSize(aspectRatio) {
 }
 
 const Marquee = ({range, folder, imageSize}) => {
-
     folder = folder.split("/public")[1];
     folder += "/";
-
-    // console.log("range: " + range);
 
     const [clickedImage, setClickedImage] = useState(null);
     const clickedOriginalImageRef = useRef(null);
     const marqueeRef = useRef(null);
+    const galleryRef = useRef(null);
 
-    // const imageSize = [512, 512, 1151, 1151, 1151, 512, 512, 1151, 512, 512, 512, 1151]
-    const images = Array.from({ length: range }, (_, i) => `${folder}${i + 1}.jpg`);
-
-    // console.log(
+    const images = Array.from({ length: range }, (_, i) => `${folder}${i + 1}.webp`);
 
     const fadeOut = () => {
-        const galleryOverlay = document.querySelector('.gallery-overlay');
         const clickedImageElement = document.querySelector('.clicked-image');
 
-        // Fade out the overlay and image
-        galleryOverlay.style.transition = "background-color 0.5s ease-in-out";
-        galleryOverlay.style.backgroundColor = "rgba(0, 0, 0, 0)";
-        galleryOverlay.style.zIndex = "-1";
+        galleryRef.current.style.transition = "background-color 0.5s ease-in-out";
+        galleryRef.current.style.backgroundColor = "rgba(0, 0, 0, 0)";
+        galleryRef.current.style.zIndex = "-1";
 
         if (clickedImageElement) {
             clickedImageElement.style.transition = "opacity 0.3s ease-in-out";
@@ -66,7 +57,7 @@ const Marquee = ({range, folder, imageSize}) => {
     };
 
     const handleImageClick = (event) => {
-        event.stopPropagation(); // Stop click event from propagating up to the gallery overlay
+        event.stopPropagation();
     };
     
     useEffect(() => {
@@ -75,18 +66,12 @@ const Marquee = ({range, folder, imageSize}) => {
             const clickedImageElement = document.querySelector('.clicked-image');
             if (!clickedImageElement) return;
 
-            // console.log("clickedImage: " + clickedImage);
-            // console.log("sliced:", clickedImage.split('/').slice(-1)[0].split('.')[0] - 1);
-
             let imageWidth = imageSize[parseInt(clickedImage.split('/').slice(-1)[0].split('.')[0]) - 1]
-            // console.log("width: " + imageWidth);
             let imageHeight = 768;
             const aspectRatio = imageWidth / imageHeight;
             
             let [desiredHeight, desiredWidth] = calculateSize(aspectRatio);
 
-            // console.log("desiredHeight: " + desiredHeight);
-            // console.log("desiredWidth: " + desiredWidth);
 
             clickedImageElement.style.height = `${desiredHeight}px`; 
             clickedImageElement.style.width = `${desiredWidth}px`;
@@ -116,8 +101,6 @@ const Marquee = ({range, folder, imageSize}) => {
             clickedOriginalImageRef.current = originalImageElement;
         }
 
-        const galleryOverlay = document.querySelector('.gallery-overlay');
-
         let intervalID;
 
         const findImageAndExecute = () => {
@@ -127,15 +110,14 @@ const Marquee = ({range, folder, imageSize}) => {
                 if (clickedImage) {
                     clearInterval(intervalID);
 
-                    // Position clickedImageElement directly over the clicked image
                     clickedImageElement.style.display = "block";
-                    clickedImageElement.style.position = "fixed"; // use fixed positioning relative to the viewport
+                    clickedImageElement.style.position = "fixed"; 
                     clickedImageElement.style.left = `${x}px`;
                     clickedImageElement.style.top = `${y}px`;
                     clickedImageElement.style.zIndex = 1;
-                    clickedImageElement.style.transform = 'none'; // reset transform if any from previous click
-                    clickedImageElement.style.height = `${h}px`; // set initial height to match the clicked image
-                    clickedImageElement.style.width = `${w}px`; // set initial width to match the clicked image
+                    clickedImageElement.style.transform = 'none';
+                    clickedImageElement.style.height = `${h}px`;
+                    clickedImageElement.style.width = `${w}px`;
 
                     void clickedImageElement.offsetWidth;
 
@@ -147,8 +129,8 @@ const Marquee = ({range, folder, imageSize}) => {
                         clickedImageElement.style.height = `${desiredHeight}px`; 
                         clickedImageElement.style.width = `${desiredWidth}px`;
 
-                        galleryOverlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-                        galleryOverlay.style.zIndex = 1;
+                        galleryRef.current.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+                        galleryRef.current.style.zIndex = 1;
                     });
                 }
             }
@@ -194,9 +176,8 @@ const Marquee = ({range, folder, imageSize}) => {
       event.stopPropagation();
       if (clickedImage) {
         let imageIndex = parseInt(clickedImage.split('/').slice(-1)[0].split('.')[0]);
-        imageIndex = (imageIndex % range) + 1; // Increase the index and cycle around if it goes over range 
-        // console.log("next image index: ", imageIndex);
-        handleImageChange(`${folder}${imageIndex}.jpg`);
+        imageIndex = (imageIndex % range) + 1;
+        handleImageChange(`${folder}${imageIndex}.webp`);
       }
     };
 
@@ -204,9 +185,8 @@ const Marquee = ({range, folder, imageSize}) => {
       event.stopPropagation();
       if (clickedImage) {
         let imageIndex = parseInt(clickedImage.split('/').slice(-1)[0].split('.')[0]);
-        imageIndex = (imageIndex - 2 + range) % range + 1; // Decrease the index and cycle around if it goes under 1
-        // console.log("next image index: ", imageIndex);
-        handleImageChange(`${folder}${imageIndex}.jpg`);
+        imageIndex = (imageIndex - 2 + range) % range + 1;
+        handleImageChange(`${folder}${imageIndex}.webp`);
       }
     };
 
@@ -217,11 +197,9 @@ const Marquee = ({range, folder, imageSize}) => {
                     <div key={i} className="marquee1">
                         {images.map((src, index) => (
                             <img 
-                                quality={100}
+                                quality={50}
                                 alt="moving picture in marquee"
                                 height={768}
-                                // width={imageSize[parseInt(src.split('/')[1].split('.')[0]) - 1]}
-                                // width={imageSize[index]} 
                                 width = {imageSize[parseInt(src.split('/').slice(-1)[0].split('.')[0]) - 1]}
                                 key={index} 
                                 src={src} 
@@ -234,7 +212,7 @@ const Marquee = ({range, folder, imageSize}) => {
             </div>
 
             
-            <div className="gallery-overlay" onClick={fadeOut}>
+            <div ref={galleryRef} className="gallery-overlay" onClick={fadeOut}>
 
               {clickedImage && 
                 <>  

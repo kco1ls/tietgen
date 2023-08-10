@@ -4,8 +4,6 @@ import BaseArticle from '../../BaseArticle/page'
 export default function Page({ params }) {
   let slug = params.slug1
 
-  console.log(slug)
-
   const matchingObject = enPaths.find((item) => item.url === slug);
 
   if (matchingObject) {

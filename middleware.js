@@ -8,7 +8,6 @@ export function middleware(req) {
   let pathname = req.nextUrl.pathname;
 
   if (/\.(jpg|png|svg)$/.test(pathname)) {
-    // If it's an image, let the request proceed as usual
     return NextResponse.next();
   }
 
@@ -18,7 +17,6 @@ export function middleware(req) {
     return NextResponse.next();
   }
 
-  // Language has not been negotiated. Perform language negotiation.
   const acceptLanguage = req.headers.get('Accept-Language');
   const locale = acceptLanguage && acceptLanguage.includes('da') ? 'dk' : 'en';
 
@@ -28,13 +26,12 @@ export function middleware(req) {
   
   const url = req.nextUrl.origin + '/' + locale + pathname
 
-  // Set the languageNegotiated cookie so that we know the language has been negotiated.
   const res = NextResponse.redirect(url);
   res.cookies.set({
     name: 'languageNegotiated',
     value: 'true',
     path: '/',
-    maxAge: 60 * 60 * 24 * 365, // 1 year
+    maxAge: 60 * 60 * 24 * 365,
     secure: true,
     sameSite: 'lax',
   });
@@ -44,7 +41,6 @@ export function middleware(req) {
 
 export const config = {
   matcher: [
-    // Skip all internal paths (_next)
     '/((?!_next).*)',
   ],
 }

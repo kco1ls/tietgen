@@ -30,9 +30,9 @@
   font-weight: 450;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .app__section2 h1 {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .app__section2-side {
@@ -40,9 +40,9 @@
   }
 }
 
-@media screen and (max-width: 815px) {
+@media screen and (max-width: 850px) {
   .app__section2 h1 {
-    font-size: 26px;
+    font-size: 22px;
   }
 }
 

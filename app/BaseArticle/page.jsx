@@ -2,7 +2,7 @@ import Hero from './containers/Hero/Hero';
 import BasePage from './containers/BasePage/BasePage';
 
 export default function BaseArticle({locale, data}) {
-  let currentURL = "/panorama.jpg";
+  let currentURL = "/panorama.webp";
   
   if (data) {
     if (data.url) {

@@ -1,0 +1,68 @@
+.app__arkiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* This line enables wrapping */
+  margin-top: 42px;
+  padding: 6px;
+  gap: 5px;
+}
+
+.app__arkiv-item {
+  background-color: #275DEA;
+  color: white;
+  border-radius: 8px; 
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.app__arkiv-item:hover {
+  background-color: #1d4ed8;
+}
+
+.app__arkiv-item h1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 1.1;
+}
+
+.app__arkiv-item h2 {
+  font-weight: 400;
+}
+
+.app__arkiv-title {
+  width: 100%;
+  font-size: 40px;
+  font-weight: 700;
+  padding-left: 6px;
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 850px) {
+  .app__arkiv-item h1 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .app__arkiv-item h1 {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .app__arkiv-item {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .app__arkiv-item h1 {
+    font-size: 20px;
+  }
+}

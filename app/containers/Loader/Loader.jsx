@@ -192,8 +192,9 @@ const Loader = () => {
               key={imageIndex}
               ref={imageRefs.current[index]}
               className={`${imageIndex === currentImage ? "visible" : ""} ${maximizeImage && imageIndex === 9 ? "image-maximize" : ""}`}
-              src={`/loader/${imageIndex}.jpg`}
+              src={`/loader/${imageIndex}.webp`}
               style={{top: `${imageTops[index]}px`}}
+              alt="Tietgen Kollegiet"
             />
           ))}
         </div>
@@ -203,14 +204,14 @@ const Loader = () => {
 
       </div> 
 
-      <Image
+      <img
         quality={100}
         width={1210}
         height={706}
         loading="eager"
         priority={true}
         className={`final-image ${currentImage === 9 ? "visible" : ""}`}
-        src="/loader/9.jpg"
+        src="/loader/9.webp"
         alt="Tietgen Kollegiet"
       />
 

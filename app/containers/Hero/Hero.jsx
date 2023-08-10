@@ -15,9 +15,11 @@ const Hero = () => {
 
       const heroTitle = document.querySelector('.app__hero-title');
       const navbar = document.querySelector('.app__navbar');
+      const navbarMobile = document.querySelector('.app__navbar-mobile');
       const navlogo = document.querySelector('.nav-logo');
       heroTitle.classList.add('show');
       navbar.classList.add('show');
+      navbarMobile.classList.add('show');
       navlogo.classList.add('show');
 
       document.documentElement.style.setProperty('--loader-opacity', '0');
@@ -34,6 +36,8 @@ const Hero = () => {
     } else {
       const navbar = document.querySelector('.app__navbar');
       navbar.classList.add('hide');
+      const navbarMobile = document.querySelector('.app__navbar-mobile');
+      navbarMobile.classList.add('hide');
     }
 
     const handleMutation = (mutationsList, observer) => {
@@ -65,7 +69,7 @@ const Hero = () => {
         <h1 className="app__hero-title">Tietgenkollegiet</h1>
       </div>
 
-      <img className="app__hero-bg" src="/loader/9.jpg" alt="hero image" />
+      <img className="app__hero-bg" src="/loader/9.webp" alt="hero image" />
     </div>
   ) 
 };
