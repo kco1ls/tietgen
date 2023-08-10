@@ -1,35 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Ground up redesign and recode of tietgenkollegiet.dk
 
-## Getting Started
+- SEO and performance optimized
+- Supports all devices and screen sizes
+- Migrated over all 170 pages (in both languages)
+- Maintained all URL and URL structures, AKA, same links on old website will link to same page on this one.
+- Supports English and Danish
+- Built on NextJS, ready to be deployed (e.g using vercel)
 
-First, run the development server:
+NOTE: I only had access to the images provided on the original website - they were quite low resolution. If original images exist in high resolution this would drastically improve how the pages look.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+I hope you like it. If you want to use it and want help with ANYTHING AT ALL, email me at joko22ab@student.cbs.dk
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# tietgen
+P.S. I'd like to note I'm definitely more of a programmer than I am a designer 😄
